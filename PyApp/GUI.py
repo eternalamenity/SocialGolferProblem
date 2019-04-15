@@ -9,6 +9,11 @@ window.geometry('640x480')
 lbl1 = Label(window, text="golfers=",width=10,height=3,anchor=S)
 lbl2 = Label(window, text="groups=",width=10,height=3,anchor=S)
 lbl3 = Label(window, text="days=",width=10,height=3,anchor=S)
+lbl4 = Label(window, text="",width=10,height=3,anchor=S)
+lbl4.grid(column=2, row=5)
+
+def clicked():
+    lbl4.configure(text="In Progress")
 
 lbl1.grid(column=0, row=0)
 lbl2.grid(column=0, row=1)
@@ -22,7 +27,7 @@ txt2.grid(column=1, row=1)
 txt3.grid(column=1, row=2)
 
 
-btn1 = Button(window, text="Solve!",width=10)
+btn1 = Button(window, text="Solve!", command=clicked,width=10)
 btn1.grid(column=2,row=9)
 
 
