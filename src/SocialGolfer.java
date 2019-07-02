@@ -5,29 +5,29 @@ import java.io.*;
 import localsolver.*;
 
 public class SocialGolfer {
-    // Number of groups
+    // liczba grup
     private int nbGroups;
-    // Size of each group
+    // wielkośc każdej grupy
     private int groupSize;
-    // Number of week
+    // liczba tygodni
     private int nbWeeks;
-    // Number of golfers
+    // liczba graczy
     private int nbGolfers;
 
-    // Objective
+    // wynik
     private LSExpression obj;
 
     // LocalSolver.
     private LocalSolver localsolver;
 
-    // Decisions variables
+    // zmienna decyzyjna
     private LSExpression[][][] x;
 
     private SocialGolfer(LocalSolver localsolver) {
         this.localsolver = localsolver;
     }
 
-    // Reads instance data
+    // pobieranie danych wejsciowych z pliku
     private void readInstance(String fileName) throws IOException {
         try (Scanner input = new Scanner(new File(fileName))) {
             nbGroups = input.nextInt();
@@ -37,14 +37,14 @@ public class SocialGolfer {
         nbGolfers = nbGroups * groupSize;
     }
 
-    // Declares the optimization model.
+    // deklarowanie modelu obliczeniowego
     private void solve(int limit) {
         LSModel model = localsolver.getModel();
 
         x = new LSExpression[nbWeeks][nbGroups][nbGolfers];
 
-        // Decision variables
-        // 0-1 decisions variables: x[w][gr][gf]=1 if golfer gf is in group gr on week w
+        // zmienne decyzyjne
+        // x[w][gr][gf]=1 jeżeli gracz gf jest w grupie gr w tygodniu w
         for (int w = 0; w < nbWeeks; w++) {
             for (int gr = 0; gr < nbGroups; gr++) {
                 for (int gf = 0; gf < nbGolfers; gf++) {
@@ -53,7 +53,7 @@ public class SocialGolfer {
             }
         }
 
-        // each week, each golfer is assigned to exactly one group
+        // każdego tygodnia, każdy gracz jest przydzielony do tylko jednej grupy
         for (int w = 0; w < nbWeeks; w++) {
             for (int gf = 0; gf < nbGolfers; gf++) {
                 LSExpression nbGroupsAssigned = model.sum();
@@ -64,7 +64,7 @@ public class SocialGolfer {
             }
         }
 
-        // each week, each group contains exactly groupSize golfers
+        // w każdym tygodniu, każda grupa ma dokładnie tyle samo graczy (gropusSize)
         for (int w = 0; w < nbWeeks; w++) {
             for (int gr = 0; gr < nbGroups; gr++) {
                 LSExpression nbGolfersInGroup = model.sum();
@@ -75,7 +75,7 @@ public class SocialGolfer {
             }
         }
 
-        // golfers gf0 and gf1 meet in group gr on week w if both are assigned to this group for week w.
+        // gracz gf0 i gf1 spotykają się w gtupie gr w tygodniu w jeżeli oboje są przydzieleni do tej grupy w tygodniu w
         LSExpression[][][][] meetings = new LSExpression[nbWeeks][nbGroups][nbGolfers][nbGolfers];
         for (int w = 0; w < nbWeeks; w++) {
             for (int gr = 0; gr < nbGroups; gr++) {
@@ -87,8 +87,7 @@ public class SocialGolfer {
             }
         }
 
-        // the number of meetings of golfers gf0 and gf1 is the sum of their meeting variables over
-        // all weeks and groups
+        // liczba spotkań graczy gf0 i gf1 jest równa sumie ich zmiennych meetings pośród wszystkich tygodni i grup
         LSExpression[][] redundantMeetings;
         redundantMeetings = new LSExpression[nbGolfers][nbGolfers];
         for (int gf0 = 0; gf0 < nbGolfers; gf0++) {
@@ -103,7 +102,7 @@ public class SocialGolfer {
             }
         }
 
-        // the goal is to minimize the number of redundant meetings
+        // celem jest usunięcie redundantnych spotkań
         obj = model.sum();
         for (int gf0 = 0; gf0 < nbGolfers; gf0++) {
             for (int gf1 = gf0 + 1; gf1 < nbGolfers; gf1++) {
@@ -114,16 +113,15 @@ public class SocialGolfer {
 
         model.close();
 
-        // Parameterizes the solver.
+        // parametryzacja solvera
         localsolver.getParam().setTimeLimit(limit);
 
         localsolver.solve();
     }
 
-    // Writes the solution in a file following the following format:
-    // - the objective value
-    // - for each week and each group, write the golfers of the group
-    // (nbWeeks x nbGroupes lines of groupSize numbers).
+    // Format zapisu wyniku końcowego:
+    // - wartość celu
+    // - dla każdego tygodnia i grupy, wypisuje graczy w grupie
     private void writeSolution(String fileName) throws IOException {
         try(PrintWriter output = new PrintWriter(fileName)) {
             output.println(obj.getValue());
@@ -168,11 +166,10 @@ public class SocialGolfer {
 
     public static void main(String[] args) {
 
-        //to tam moje ścieżki do pliku wejściowego i wyjściowego, w wejściowym podajecie ilość grup, ile graczy w grupie i liczbe tygodni w jednej linii po przecinku
-        //kolejność plików w tabeli ma znaczenie
+        //ścieżki określające położenie plików wejściowych i wyjściowych
         String[] arg = new String[2];
-        arg[0] = "/home/przemyslawb/IdeaProjects/SocialGolfer/src/in.txt";
-        arg[1] = "/home/przemyslawb/IdeaProjects/SocialGolfer/src/out.txt";
+        arg[0] = "C:\\Users\\przem\\OneDrive\\Dokumenty\\GitHub\\SocialGolferProblem\\src\\in.txt";
+        arg[1] = "C:\\Users\\przem\\OneDrive\\Dokumenty\\GitHub\\SocialGolferProblem\\src\\outs.txt";
 
         run(arg);
     }
