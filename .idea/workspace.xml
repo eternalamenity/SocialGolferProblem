@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9fd3322-73a6-45aa-a4f2-3b5177ce0570" name="Default Changelist" comment="" />
+    <list default="true" id="a9fd3322-73a6-45aa-a4f2-3b5177ce0570" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/SocialGolfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SocialGolfer.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,9 +19,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SocialGolfer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="176" column="1" lean-forward="true" selection-start-line="176" selection-start-column="1" selection-end-line="176" selection-end-column="1" />
+            <state relative-caret-position="119">
+              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
               <folding>
+                <element signature="e#0#6697#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -67,7 +70,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
-    <option name="y" value="52" />
+    <option name="y" value="51" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -140,16 +143,17 @@
       <workItem from="1561066024938" duration="1202000" />
       <workItem from="1561123207764" duration="1587000" />
       <workItem from="1562098047568" duration="1145000" />
+      <workItem from="1562099339670" duration="211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3934000" />
+    <option name="totallyTimeSpent" value="4145000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="23" width="1550" height="848" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18657719" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -188,9 +192,10 @@
     <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.base/java/io/FileInputStream.java" />
     <entry file="file://$PROJECT_DIR$/src/SocialGolfer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="176" column="1" lean-forward="true" selection-start-line="176" selection-start-column="1" selection-end-line="176" selection-end-column="1" />
+        <state relative-caret-position="119">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
           <folding>
+            <element signature="e#0#6697#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
